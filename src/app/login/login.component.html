@@ -1,12 +1,14 @@
-<div>
-    <span>User name</span>
-    <input type="text" [(ngModel)]="user.userName">
+<div class="div">
+    <div class="btn">
+        <span>User name</span>
+        <input type="text" [(ngModel)]="user.userName" class="button">
+    </div>
     <br>
     <span>Password</span>
-    <input type="password" [(ngModel)]="user.password">
+    <input type="password" [(ngModel)]="user.password" class="button">
     <br>
     <span>Client type</span>
-    <select [(ngModel)]="user.clientType">
+    <select [(ngModel)]="user.clientType" class="button">
         <option value="CLIENT">Client</option>
         <option value="COMPANY">Company</option>
         <option value="ADMIN">Admin</option>
