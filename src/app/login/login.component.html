@@ -1,0 +1,15 @@
+<div>
+    <span>User name</span>
+    <input type="text" [(ngModel)]="user.userName">
+    <br>
+    <span>Password</span>
+    <input type="password" [(ngModel)]="user.password">
+    <br>
+    <span>Client type</span>
+    <select [(ngModel)]="user.clientType">
+        <option value="CLIENT">Client</option>
+        <option value="COMPANY">Company</option>
+        <option value="ADMIN">Admin</option>
+    </select>
+    <button (click)="log(user)">Submit</button> {{ user | json }}
+</div>

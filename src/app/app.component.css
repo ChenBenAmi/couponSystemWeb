@@ -1,0 +1,24 @@
+nav {
+    text-align: center;
+    background-color: #08c0fc;
+    height: 50px;
+}
+
+a {
+    font-size: 20px;
+    text-decoration: none;
+    padding: 7px 20px;
+    display: inline-block;
+    color: white;
+    transition: 1s;
+}
+
+.active {
+    font-size: 30px;
+    color: greenyellow;
+}
+
+main {
+    width: 85%;
+    margin: auto;
+}
