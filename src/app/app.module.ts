@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { TrimPipe } from './pipes/trim.pipe';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,15 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     HeaderComponent,
     TrimPipe,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

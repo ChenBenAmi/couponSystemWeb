@@ -21,7 +21,13 @@ export class LoginComponent implements OnInit {
   }
 
   log(user: LoginUser) {
-    const observable = this.login.log(user).subscribe(console.log);
+    const observable = this.login.log(user).subscribe(
+      (res) => { this.result = res }
+    );
+    if (this.result = ! null) {
+      
+    }
+
   }
 
 }
