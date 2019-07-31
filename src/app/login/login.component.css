@@ -1,5 +1,26 @@
 .div {
+    position: absolute;
+  top: 35%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
     align-items: center;
-    display: flex;
+    width: 500px;
+    display: inline-table;
     justify-content: center;
+    
 }
+.center {
+   
+        
+    position: fixed;
+    top: 50%;
+    left: 37%;
+    margin-top: -50px;
+    margin-left: -100px;
+  }

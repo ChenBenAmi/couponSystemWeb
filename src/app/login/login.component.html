@@ -1,17 +1,30 @@
+<span class="center" >
+ <img src="assets/img/block.png" alt="Paris">
 <div class="div">
     <div class="btn">
         <span>User name</span>
         <input type="text" [(ngModel)]="user.userName" class="button">
     </div>
     <br>
+    
     <span>Password</span>
     <input type="password" [(ngModel)]="user.password" class="button">
+
     <br>
+    <br>
+
     <span>Client type</span>
     <select [(ngModel)]="user.clientType" class="button">
         <option value="CLIENT">Client</option>
         <option value="COMPANY">Company</option>
         <option value="ADMIN">Admin</option>
     </select>
-    <button (click)="log(user)">Submit</button> {{ user | json }} {{result | json}}
+    <br>
+    <br>
+
+    <button (click)="log(user)" >Submit</button> 
+    <br>
+    <br>
+    {{ user | json }} {{result | json}}
 </div>
+</span>
