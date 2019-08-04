@@ -10,7 +10,6 @@ import { TrimPipe } from './pipes/trim.pipe';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
 @NgModule({
   declarations: [
     AppComponent,

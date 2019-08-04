@@ -16,7 +16,7 @@ private example = "https://my-json-server.typicode.com/typicode/demo/profile";
 constructor(private http: HttpClient) { }
 
   ngOnInit() {
-   this.http.get(this._url)
+   this.http.get(this._url,{withCredentials:true})
    .subscribe(
      (data:any[])=>{
        console.log(data);
