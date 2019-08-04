@@ -1,5 +1,4 @@
-import { LoginServiceService } from './login-service.service';
-import { User } from './../objects/user';
+import { LoginServiceService } from '../services/Login/login-service.service';
 import { Component, OnInit } from '@angular/core';
 import { LoginUser } from '../objects/login-user';
 import { Router } from '@angular/router';
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private login: LoginServiceService, private router: Router) { }
+  constructor(private loginService: LoginServiceService, private router: Router) { }
   url: string
   user: LoginUser = {
     userName: '', password: '', clientType: 'CLIENT'
@@ -22,13 +21,13 @@ export class LoginComponent implements OnInit {
   }
 
   log(user: LoginUser) {
-    const observable = this.login.log(user).subscribe(
+    const observable = this.loginService.log(user).subscribe(
       (res) => {
         this.result = res;
-        console.log(this.result);
+        console.log(this.result.comment);
         if (this.result != null) {
-          this.router.navigate(['/admin'])
-        } 
+          this.router.navigate(['/admin']);
+        }
       }
     );
   }

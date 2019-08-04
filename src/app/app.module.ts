@@ -10,6 +10,8 @@ import { TrimPipe } from './pipes/trim.pipe';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { CompaniesComponent } from './admin/companies/companies.component';
+import { CustomersComponent } from './admin/customers/customers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,9 @@ import { RouterModule, Routes } from '@angular/router';
     HeaderComponent,
     TrimPipe,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    CompaniesComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,
