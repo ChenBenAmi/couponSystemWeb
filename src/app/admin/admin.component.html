@@ -1,5 +1,14 @@
-<ul>
-<li>
-    <button onclick=" get_coman()">click</button>
-</li>
-  </ul> 
+<body>
+
+  <div class="grid-container" *ngFor="let companie of companies">
+    <div class="grid-item">
+      <ul>
+        <li>
+        {{companie}}
+        </li>
+      </ul>
+    </div>
+ 
+  </div>
+  
+</body>
