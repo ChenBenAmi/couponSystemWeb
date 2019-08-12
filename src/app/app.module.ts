@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CompaniesComponent } from './admin/companies/companies.component';
 import { CustomersComponent } from './admin/customers/customers.component';
+import { AdminService } from './services/Admin/admin.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,7 @@ import { CustomersComponent } from './admin/customers/customers.component';
       },
     ])
   ],
-  providers: [],
+  providers: [AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
