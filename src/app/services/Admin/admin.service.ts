@@ -25,8 +25,8 @@ export class AdminService {
 
   getAllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>('http://localhost:8080/Coupon_System/rest/admin/getCustomers', {
-      headers: this.headers, responseType: 'json', withCredentials: true
-    });
+      headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
+    }).pipe(catchError(err => this.handleError(err)));
   }
 
 
