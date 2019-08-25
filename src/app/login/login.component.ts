@@ -11,9 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginServiceService, private router: Router) { }
-  url: string
   user: LoginUser = {
-    userName: '', password: '', clientType: 'CLIENT'
+    userName: '', password: '', clientType: 'CUSTOMER'
   };
   result: any;
 
@@ -25,8 +24,12 @@ export class LoginComponent implements OnInit {
       (res) => {
         this.result = res;
         console.log(this.result.comment);
-        if (this.result != null) {
+        if (this.result.comment === 'ADMIN') {
           this.router.navigate(['/admin']);
+        } else if (this.result.comment === 'COMPANY') {
+          this.router.navigate(['/company']);
+        } else if (this.result.comment === 'CUSTOMER') {
+          this.router.navigate(['/customer']);
         }
       }
     );

@@ -13,6 +13,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompaniesComponent } from './admin/companies/companies.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { AdminService } from './services/Admin/admin.service';
+import { CompanyComponent } from './company/company.component';
+import { CustomerComponent } from './customer/customer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import { AdminService } from './services/Admin/admin.service';
     LoginComponent,
     AdminComponent,
     CompaniesComponent,
-    CustomersComponent
+    CustomersComponent,
+    CompanyComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +38,10 @@ import { AdminService } from './services/Admin/admin.service';
         path: '', component: AppComponent,
         children: [
           { path: '', redirectTo: 'login', pathMatch: 'full' },
+          { path: 'login', component: LoginComponent },
           { path: 'admin', component: AdminComponent },
-          { path: 'login', component: LoginComponent }
+          { path: 'company', component: AdminComponent },
+          { path: 'customer', component: AdminComponent }
         ]
       },
     ])

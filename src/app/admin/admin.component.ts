@@ -1,9 +1,7 @@
 import { Customer } from './../models/customer';
 import { AdminService } from './../services/Admin/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Company } from '../models/company';
-import { from } from 'rxjs';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -17,13 +15,14 @@ export class AdminComponent implements OnInit {
   private companies: Company[];
   private customers: Customer[];
 
-  constructor( private adminService: AdminService) { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
 
     this.loadCompanies();
     this.loadCustomers();
   }
+
   loadCompanies() {
     this.adminService.getAllCompanies().subscribe((response: any) => {
       this.companies = response.body;
