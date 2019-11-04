@@ -23,14 +23,14 @@ export class LoginComponent implements OnInit {
     const observable = this.loginService.log(user).subscribe(
       (res) => {
         this.result = res;
-        console.log(this.result.comment);
-        if (this.result.comment === 'ADMIN') {
-          this.router.navigate(['/admin']);
-        } else if (this.result.comment === 'COMPANY') {
-          this.router.navigate(['/company']);
-        } else if (this.result.comment === 'CUSTOMER') {
-          this.router.navigate(['/customer']);
-        }
+        console.log("result is --->"+this.result);
+        // if (this.result.comment === 'ADMIN') {
+        //   this.router.navigate(['/admin']);
+        // } else if (this.result.comment === 'COMPANY') {
+        //   this.router.navigate(['/company']);
+        // } else if (this.result.comment === 'CUSTOMER') {
+        //   this.router.navigate(['/customer']);
+        // }
       }
     );
   }

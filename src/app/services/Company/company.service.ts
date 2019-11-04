@@ -15,7 +15,7 @@ export class CompanyService {
 
 
   getCoupons(): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>('http://localhost:8080/Coupon_System/rest/company/getCoupons', {
+    return this.http.get<Coupon[]>('http://localhost:5000/company/getAllCoupon', {
       headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
     }).pipe(catchError(err => this.handleError(err)));
   }

@@ -18,13 +18,13 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getAllCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>('http://localhost:8080/Coupon_System/rest/admin/getCompanies', {
+    return this.http.get<Company[]>('http://localhost:5000/admin/getAllCompanies', {
       headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
     }).pipe(catchError(err => this.handleError(err)));
   }
 
   getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>('http://localhost:8080/Coupon_System/rest/admin/getCustomers', {
+    return this.http.get<Customer[]>('http://localhost:5000/admin/getAllCustomers', {
       headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
     }).pipe(catchError(err => this.handleError(err)));
   }
