@@ -14,23 +14,24 @@ export class LoginComponent implements OnInit {
   user: LoginUser = {
     userName: '', password: '', clientType: 'CUSTOMER'
   };
-  result: any;
+  result: Response;
 
   ngOnInit() {
   }
 
   log(user: LoginUser) {
-    const observable = this.loginService.log(user).subscribe(
-      (res) => {
-        this.result = res;
-        console.log("result is --->"+this.result);
-        // if (this.result.comment === 'ADMIN') {
-        //   this.router.navigate(['/admin']);
-        // } else if (this.result.comment === 'COMPANY') {
-        //   this.router.navigate(['/company']);
-        // } else if (this.result.comment === 'CUSTOMER') {
-        //   this.router.navigate(['/customer']);
-        // }
+    this.loginService.log(user).subscribe(
+      (res:any) => {
+        this.result=res
+        console.log("this.result is --->"+this.result.body);
+        this.loginService.token=this.result.body.toString();
+        if (user.clientType==='ADMIN') {
+          this.router.navigate(['/admin']);
+        } else if (user.clientType==='ADMIN') {
+          this.router.navigate(['/company']);
+        } else if (user.clientType==='ADMIN') {
+          this.router.navigate(['/customer']);
+        }
       }
     );
   }

@@ -9,11 +9,13 @@ export class LoginServiceService {
 
   constructor(private http: HttpClient) { }
 
+ token: string;
+
   log(user: LoginUser) {
 const params = new HttpParams()
   .set('userName', user.userName)
   .set('password', user.password)
   .set("clientType",user.clientType);
-    return this.http.post('http://localhost:5000/login',params );
+    return this.http.post('http://localhost:5000/login',params,{observe: 'response',responseType:'text'} );
   }
 }

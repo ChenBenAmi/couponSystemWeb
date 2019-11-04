@@ -1,9 +1,10 @@
 import { Customer } from './../../models/customer';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Company } from 'src/app/models/company';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { LoginServiceService } from '../Login/login-service.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,22 +13,21 @@ import { catchError } from 'rxjs/operators';
 
 export class AdminService {
 
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
-  constructor(private http: HttpClient) { }
 
-  getAllCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>('http://localhost:5000/admin/getAllCompanies', {
-      headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
-    }).pipe(catchError(err => this.handleError(err)));
+  constructor(private http: HttpClient,private loginService:LoginServiceService) { }
+
+  getAllCompanies() {
+    const params = new HttpParams()
+  .set('token', this.loginService.token )
+  console.log(this.loginService.token)
+    return this.http.get('http://localhost:5000/admin/getAllCompanies', {observe: 'response',responseType:'text',params} );
   }
 
-  getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>('http://localhost:5000/admin/getAllCustomers', {
-      headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
-    }).pipe(catchError(err => this.handleError(err)));
-  }
+  // getAllCustomers(): Observable<Customer[]> {
+  //   return this.http.get<Customer[]>('http://localhost:5000/admin/getAllCustomers', {
+  //     headers: this.headers, responseType: 'json', withCredentials: true, observe: 'response' as 'body'
+  //   }).pipe(catchError(err => this.handleError(err)));
+  // }
 
 
   private handleError(errorResponse: HttpErrorResponse) {
