@@ -16,7 +16,7 @@ export class CompanyComponent implements OnInit {
   }
 
   loadCoupons() {
-    this.companyService.getCoupons().subscribe((response: any) => {
+    this.companyService.getAllCoupon().subscribe((response: any) => {
       this.coupons = response.body;
       console.log(this.coupons[0].id);
       console.log(this.coupons[0].title);

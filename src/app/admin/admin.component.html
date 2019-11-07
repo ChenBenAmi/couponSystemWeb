@@ -1,14 +1,33 @@
-<body>
-
-    <div class="grid-container" *ngFor="let company of company">
-        <div class="grid-item">
-            <ul>
-                <li>
-                    {{company[0]}}
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
-</body>
+<div class="center basic-contrainer">
+    <mat-tab-group>
+        <mat-tab label="Companies">
+                <div *ngFor="let company of adminService.getCompanies()">
+                        <mat-card class="example-card">
+                                <mat-card-header>
+                                  <div mat-card-avatar class="example-header-image"></div>
+                                  <mat-card-title>{{company.id}}</mat-card-title>
+                                  <mat-card-subtitle>{{company.compName}}</mat-card-subtitle>
+                                  <mat-card-subtitle>{{company.email}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>
+                                </mat-card-content>
+                              </mat-card>
+                              <mat-divider></mat-divider>
+                     </div>
+        </mat-tab>
+        <mat-tab label="Customers">
+                <div *ngFor="let customer of adminService.getCustomers()">
+                        <mat-card class="example-card">
+                                <mat-card-header>
+                                  <div mat-card-avatar class="example-header-image"></div>
+                                  <mat-card-title>{{customer.id}}</mat-card-title>
+                                  <mat-card-subtitle>{{customer.customerName}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>
+                                </mat-card-content>
+                              </mat-card>
+                              <mat-divider></mat-divider>
+                     </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

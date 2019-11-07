@@ -15,6 +15,14 @@ import { CustomersComponent } from './admin/customers/customers.component';
 import { AdminService } from './services/Admin/admin.service';
 import { CompanyComponent } from './company/company.component';
 import { CustomerComponent } from './customer/customer.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +37,17 @@ import { CustomerComponent } from './customer/customer.component';
     CustomerComponent
   ],
   imports: [
+    MatDividerModule,
+    MatListModule,
+    MatCardModule,
+    MatTabsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: '', component: AppComponent,
@@ -50,3 +65,6 @@ import { CustomerComponent } from './customer/customer.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

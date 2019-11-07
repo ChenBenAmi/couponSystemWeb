@@ -13,17 +13,7 @@ export class CustomerComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.loadCoupons();
   }
 
-  loadCoupons() {
-    this.customerService.getCoupons().subscribe((response: any) => {
-      this.coupons = response.body;
-      console.log(this.coupons[0].id);
-      console.log(this.coupons[0].title);
-      console.log(response.body[0]);
-    }
-    );
-  }
 }
 
