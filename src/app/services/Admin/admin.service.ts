@@ -5,6 +5,10 @@ import { Company } from 'src/app/models/company';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginServiceService } from '../Login/login-service.service';
+import { Income } from 'src/app/models/income';
+import { CompanyToSave } from 'src/app/models/companyToSave';
+import { Router } from '@angular/router';
+import { CustomerToSave } from 'src/app/models/customerToSave';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,10 +18,13 @@ import { LoginServiceService } from '../Login/login-service.service';
 export class AdminService {
 
 
-  constructor(private http: HttpClient, private loginService: LoginServiceService) { }
+  constructor(private http: HttpClient, private loginService: LoginServiceService,private router:Router) { }
 
   private companies: Company[];
   private customers: Customer[];
+  private incomes:Income[];
+  company:Company
+  customer:Customer
 
   getCompanies() {
     return this.companies
@@ -26,6 +33,11 @@ export class AdminService {
   getCustomers() {
     return this.customers
   }
+
+  getIncomes() {
+    return this.incomes
+  }
+
 
   getAllCompanies() {
     const params = new HttpParams()
@@ -48,12 +60,16 @@ export class AdminService {
     })
   }
 
-  addCompany(company: Company) {
+  addCompany(company: CompanyToSave) {
     const params = new HttpParams()
       .set('token', this.loginService.token)
-    return this.http.post('http://localhost:5000/admin/addCompany', {
-      observe: 'response', responseType: 'text', params, company
-    })
+    return this.http.post('http://localhost:5000/admin/addCompany',company, {
+      observe: 'response', responseType: 'text', params
+    }).subscribe((response: any) => {
+      console.log(JSON.parse(response.body))
+      this.router.navigate(['/admin']);
+    }
+    );
   }
 
   deleteCompany(companyId: number) {
@@ -62,15 +78,21 @@ export class AdminService {
       .set('companyId', companyId.toString())
     return this.http.delete('http://localhost:5000/admin/deleteCompany', {
       observe: 'response', responseType: 'text', params
-    })
+    }).subscribe((response: any) => {
+      this.getAllCompanies()  
+    }
+    );
   }
 
   updateCompany(company: Company) {
     const params = new HttpParams()
       .set('token', this.loginService.token)
-    return this.http.put('http://localhost:5000/admin/updateCompany', {
-      observe: 'response', responseType: 'text', params, company
-    })
+    return this.http.put('http://localhost:5000/admin/updateCompany',company, {
+      observe: 'response', responseType: 'text', params
+    }).subscribe((response:any) =>{
+      this.router.navigate(['/admin'])
+    }
+    )
   }
 
   getAllCustomers() {
@@ -93,13 +115,16 @@ export class AdminService {
       observe: 'response', responseType: 'text', params
     })
   }
-
-  addCustomer(customer: Customer) {
+  addCustomer(customer: CustomerToSave) {
     const params = new HttpParams()
       .set('token', this.loginService.token)
-    return this.http.post('http://localhost:5000/admin/addCustomer', {
-      observe: 'response', responseType: 'text', params, customer
-    })
+    return this.http.post('http://localhost:5000/admin/addCustomer',customer ,{
+      observe: 'response', responseType: 'text', params
+    }).subscribe((response: any) => {
+      console.log(JSON.parse(response.body))
+      this.router.navigate(['/admin']);
+    }
+    );
   }
 
   deleteCustomer(customerId: number) {
@@ -108,15 +133,21 @@ export class AdminService {
       .set('customerId', customerId.toString())
     return this.http.delete('http://localhost:5000/admin/deleteCustomer', {
       observe: 'response', responseType: 'text', params
-    })
+    }).subscribe((response: any) => {
+      this.getAllCustomers()  
+    }
+    );
   }
 
   updateCustomer(customer: Customer) {
     const params = new HttpParams()
       .set('token', this.loginService.token)
-    return this.http.put('http://localhost:5000/admin/updateCustomer', {
-      observe: 'response', responseType: 'text', params, customer
-    })
+    return this.http.put('http://localhost:5000/admin/updateCustomer',customer, {
+      observe: 'response', responseType: 'text', params
+    }).subscribe((response:any) =>{
+      this.router.navigate(['/admin'])
+    }
+    )
   }
 
 
@@ -125,7 +156,11 @@ export class AdminService {
       .set('token', this.loginService.token)
     return this.http.get('http://localhost:5000/admin/viewAllIncome', {
       observe: 'response', responseType: 'text', params
-    })
+    }).subscribe((response: any) => {
+      this.incomes = JSON.parse(response.body)
+      console.log(this.incomes)
+    }
+    );
   }
   viewIncomeByCustomer(customerId: number) {
     const params = new HttpParams()

@@ -2,6 +2,9 @@ import { Customer } from './../models/customer';
 import { AdminService } from './../services/Admin/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../models/company';
+import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Income } from '../models/income';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -14,11 +17,71 @@ export class AdminComponent implements OnInit {
 
   
   private result: Response;
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router) { }
+private customerId:number
+private companyId:number
+private companySearch:boolean
+private customerSearch:boolean
+private customerIncomeSearch:boolean
+private companyIncomeSearch:boolean
+private income:Income={
+id:0,amount:0,description:'',name:'',date:''
+}
+private customer:Customer={
+  id:0,customerName:'',password:''
+}
+ company:Company={
+   id:0,companyName:'',password:'',email:"" 
+ }
 
   ngOnInit() {
     this.adminService.getAllCompanies()
     this.adminService.getAllCustomers()
+    this.adminService.viewAllIncome()
+  }
+
+  createCompany(){
+    this.router.navigate(['/admin/createCompany']);
+  }
+  createCustomer() {
+    this.router.navigate(['/admin/createCustomer']);
+  }
+  deleteCompany(companyId:number) {
+    console.log(companyId)
+    this.adminService.deleteCompany(companyId)
+  }
+
+  deleteCustomer(companyId:number) {
+    console.log(companyId)
+    this.adminService.deleteCustomer(companyId)
+  }
+
+  getCompanyById(companyId:number){
+    this.adminService.getCompany(companyId).subscribe((response:any) =>{
+      console.log(JSON.parse(response.body))
+      this.company=JSON.parse(response.body)
+    })
+    this.companySearch=true
+  }
+
+  getCustomerById(customerId:number){
+    this.adminService.getCustomer(customerId).subscribe((response:any) =>{
+      console.log(JSON.parse(response.body))
+      this.customer=JSON.parse(response.body)
+    })
+    this.customerSearch=true
+  }
+
+  updateCompany(company:Company) {
+    this.adminService.company=company
+    this.router.navigate(['/admin/updateCompany'])
+  }
+
+  updateCustomer(customer:Customer) {
+    this.adminService.customer=customer
+    console.log("hey")
+    console.log(this.adminService.customer)
+    this.router.navigate(['/admin/updateCustomer'])
   }
   
 }

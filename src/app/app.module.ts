@@ -10,8 +10,10 @@ import { TrimPipe } from './pipes/trim.pipe';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { CompaniesComponent } from './admin/companies/companies.component';
-import { CustomersComponent } from './admin/customers/customers.component';
+import { CreateCompanyComponent } from './admin/CreateCompany/createCompany.component';
+import { UpdateCustomerComponent } from './admin/UpdateCustomer/updateCustomerComponent.component';
+import { UpdateCompanyComponent } from './admin/UpdateCompany/updateCompanyComponent.component';
+import {CreateCustomerComponent } from './admin/CreateCustomer/createCustomerComponent.component';
 import { AdminService } from './services/Admin/admin.service';
 import { CompanyComponent } from './company/company.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -23,6 +25,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule } from '@angular/material';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,14 +41,24 @@ import {MatDividerModule} from '@angular/material/divider';
     TrimPipe,
     LoginComponent,
     AdminComponent,
-    CompaniesComponent,
-    CustomersComponent,
     CompanyComponent,
-    CustomerComponent
+    CustomerComponent,
+    CreateCompanyComponent,
+    UpdateCustomerComponent,
+    UpdateCompanyComponent,
+    CreateCustomerComponent
   ],
   imports: [
+    MatMenuModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule,
     MatDividerModule,
     MatListModule,
+    MatGridListModule,
     MatCardModule,
     MatTabsModule,
     BrowserModule,
@@ -56,7 +76,11 @@ import {MatDividerModule} from '@angular/material/divider';
           { path: 'login', component: LoginComponent },
           { path: 'admin', component: AdminComponent },
           { path: 'company', component: AdminComponent },
-          { path: 'customer', component: AdminComponent }
+          { path: 'customer', component: AdminComponent },
+          {path: 'admin/createCompany',component:CreateCompanyComponent},
+          {path: 'admin/createCustomer', component:CreateCustomerComponent},
+          {path:'admin/updateCompany' ,component:UpdateCompanyComponent},
+          {path:'admin/updateCustomer' ,component:UpdateCustomerComponent},
         ]
       },
     ])

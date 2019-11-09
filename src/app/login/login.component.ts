@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginServiceService, private router: Router) { }
   user: LoginUser = {
-    userName: '', password: '', clientType: 'CUSTOMER'
+    userName: 'admin', password: '1234', clientType: 'ADMIN'
   };
   result: Response;
 

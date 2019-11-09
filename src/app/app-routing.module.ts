@@ -4,6 +4,10 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
+import { CreateCompanyComponent } from './admin/CreateCompany/createCompany.component';
+import { CreateCustomerComponent } from './admin/CreateCustomer/createCustomerComponent.component';
+import { UpdateCompanyComponent } from './admin/UpdateCompany/updateCompanyComponent.component';
+import { UpdateCustomerComponent } from './admin/UpdateCustomer/updateCustomerComponent.component';
 
 const routes: Routes = [{
   path: 'login', component: LoginComponent
@@ -14,6 +18,10 @@ const routes: Routes = [{
 },
 {path: 'customer', component: CustomerComponent
   },
+  {path: 'admin/createCompany',component:CreateCompanyComponent},
+  {path: 'admin/createCustomer',component:CreateCustomerComponent},
+  {path:'admin/updateCompany' ,component:UpdateCompanyComponent},
+  {path:'admin/updateCustomer' ,component:UpdateCustomerComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
