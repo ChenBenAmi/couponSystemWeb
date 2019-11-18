@@ -39,6 +39,7 @@ export class AdminService {
   }
 
 
+
   getAllCompanies() {
     const params = new HttpParams()
       .set('token', this.loginService.token)

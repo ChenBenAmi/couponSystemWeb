@@ -1,1 +1,157 @@
-<p>customer works!</p>
+<div class="center basic-contrainer">
+    <mat-tab-group>
+        <mat-tab label="Coupons">
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let coupon of customerService.getCoupons()">
+                    <div class="centerPage">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>{{coupon.id}}</mat-card-title>
+                                <mat-card-subtitle>{{coupon.title}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>amount : {{coupon.amount}}</p>
+                                <p>price : {{coupon.price}}</p>
+                                <p>couponType : {{coupon.couponType}}</p>
+                                <p>message : {{coupon.message}}</p>
+                                <p>image : {{coupon.image}}</p>
+                                <p>startDate : {{coupon.startDate}} endDate : {{coupon.endDate}}</p>
+                                <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+                                <mat-menu #menu="matMenu">
+                                    <button (click)="purchaseCoupon(coupon)" mat-menu-item>purchase Coupon</button>
+                                </mat-menu>
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-divider></mat-divider>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-tab>
+        <mat-tab label="History">
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let coupon of customerService.getPurchasedCoupons()">
+                    <div class="centerPage">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>{{coupon.id}}</mat-card-title>
+                                <mat-card-subtitle>{{coupon.title}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>couponType : {{coupon.couponType}}</p>
+                                <p>price : {{coupon.price}}</p>
+                                <p>message : {{coupon.message}}</p>
+                                <p>image : {{coupon.image}}</p>
+                                <p>startDate : {{coupon.startDate}} endDate : {{coupon.endDate}}</p>
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-divider></mat-divider>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <div class="centerPage">
+                <mat-divider></mat-divider>
+                <mat-form-field>
+                  <textarea matInput placeholder="price" [(ngModel)]="price"></textarea>
+                </mat-form-field>
+                <button mat-button class="button" (click)="getCouponsByPrice(price)">Get Coupons by price</button>
+                <div *ngIf="couponPriceSearch">
+                    <mat-grid-list cols="2" rowHeight="2:1">
+                        <mat-grid-tile *ngFor="let coupon of customerService.getPriceCoupons()">
+                            <div class="centerPage">
+                                <mat-card class="example-card">
+                                    <mat-card-header>
+                                        <div mat-card-avatar class="example-header-image"></div>
+                                        <mat-card-title>{{coupon.id}}</mat-card-title>
+                                        <mat-card-subtitle>{{coupon.title}}</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <p>amount : {{coupon.amount}}</p>
+                                        <p>price : {{coupon.price}}</p>
+                                        <p>couponType : {{coupon.couponType}}</p>
+                                        <p>message : {{coupon.message}}</p>
+                                        <p>image : {{coupon.image}}</p>
+                                        <p>startDate : {{coupon.startDate}} endDate : {{coupon.endDate}}</p>
+                                        <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+                                        <mat-menu #menu="matMenu">
+                                            <button (click)="purchaseCoupon(coupon)" mat-menu-item>purchase Coupon</button>
+                                        </mat-menu>
+                                    </mat-card-content>
+                                </mat-card>
+                                <mat-divider></mat-divider>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+
+                <mat-divider></mat-divider>
+                <mat-form-field>
+                    <mat-label>Select an option</mat-label>
+                    <mat-select [(value)]="type">
+                      <mat-option value="FOOD">Food</mat-option>
+                      <mat-option value="RESTURANTS">Resturants</mat-option>
+                      <mat-option value="ELECTRICITY">Electricity</mat-option>
+                      <mat-option value="HEALTH">Health</mat-option>
+                      <mat-option value="SPORTS">Sports</mat-option>
+                      <mat-option value="CAMPING">Camping</mat-option>
+                      <mat-option value="TRAVELLING">Travelling</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <button mat-button class="button" (click)="getCouponsByType(type)">Get Coupons by type</button>
+                <div *ngIf="couponTypeSearch">
+                    <mat-grid-list cols="2" rowHeight="2:1">
+                        <mat-grid-tile *ngFor="let coupon of customerService.getTypeCoupons()">
+                            <div class="centerPage">
+                                <mat-card class="example-card">
+                                    <mat-card-header>
+                                        <div mat-card-avatar class="example-header-image"></div>
+                                        <mat-card-title>{{coupon.id}}</mat-card-title>
+                                        <mat-card-subtitle>{{coupon.title}}</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <p>amount : {{coupon.amount}}</p>
+                                        <p>price : {{coupon.price}}</p>
+                                        <p>couponType : {{coupon.couponType}}</p>
+                                        <p>message : {{coupon.message}}</p>
+                                        <p>image : {{coupon.image}}</p>
+                                        <p>startDate : {{coupon.startDate}} endDate : {{coupon.endDate}}</p>
+                                        <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+                                        <mat-menu #menu="matMenu">
+                                            <button (click)="purchaseCoupon(coupon)" mat-menu-item>purchase Coupon</button>
+                                        </mat-menu>
+                                    </mat-card-content>
+                                </mat-card>
+                                <mat-divider></mat-divider>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="income">
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let income of customerService.getIncomes()">
+                    <div class="centerPage">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>{{income.id}}</mat-card-title>
+                                <mat-card-subtitle>{{income.name}}</mat-card-subtitle>
+                              </mat-card-header>
+                              <mat-card-content>
+                                <p>
+                                  {{income.description}}
+                                </p>
+                                <p>
+                                  {{income.amount}}
+                                </p>
+                              </mat-card-content>
+                            </mat-card>
+                        <mat-divider></mat-divider>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-tab>
+    </mat-tab-group>
+</div>

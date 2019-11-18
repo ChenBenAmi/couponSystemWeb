@@ -1,135 +1,193 @@
 <div class="center basic-contrainer">
-    <mat-tab-group>
-        <mat-tab label="Companies">
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let company of adminService.getCompanies()">
-                    <div class="centerPage">
-                        <mat-card class="example-card">
-                                <mat-card-header>
-                                  <div mat-card-avatar class="example-header-image"></div>
-                                  <mat-card-title>{{company.id}}</mat-card-title>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <p> Company name : {{company.companyName}}</p>
-                                    <p> Company email : {{company.email}}</p>
-                                    <p> Company password : {{company.password}}</p>
-                                    <button mat-button [matMenuTriggerFor]="menu">Actions</button>
-                                    <mat-menu #menu="matMenu">
-                                      <button  (click)="updateCompany(company)" mat-menu-item>Update Company</button>
-                                      <button (click)="deleteCompany(company.id)" mat-menu-item>Delete Company</button>
-                                    </mat-menu>
-                                </mat-card-content>
-                              </mat-card>
-                              <mat-divider></mat-divider>
-                     </div>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <mat-divider></mat-divider>
-                     <div class="centerPage">
-                        <button mat-button  class="button" (click)="createCompany()">Create Company</button>
-                    <mat-divider></mat-divider>
-                    <mat-form-field>
-                        <textarea matInput placeholder="Company id" [(ngModel)]="companyId"></textarea>
-                      </mat-form-field>
-                      <button mat-button  class="button" (click)="getCompanyById(companyId)">Get Company</button>
-                      <div *ngIf="companySearch">
-                          <mat-card class="example-card" >
-                              <mat-card-header>
-                                <div mat-card-avatar class="example-header-image"></div>
-                                <mat-card-title>{{company.id}}</mat-card-title>
-                              </mat-card-header>
-                              <mat-card-content>
-                                  <p> Company name : {{company.companyName}}</p>
-                                  <p> Company email : {{company.email}}</p>
-                                  <p> Company password : {{company.password}}</p>
-                                  <button mat-button [matMenuTriggerFor]="menu">Actions</button>
-                                  <mat-menu #menu="matMenu">
-                                    <button  (click)="updateCompany(company)" mat-menu-item>Update Company</button>
-                                    <button (click)="deleteCompany(company.id)" mat-menu-item>Delete Company</button>
-                                  </mat-menu>
-                              </mat-card-content>
-                            </mat-card>
-                      </div>
-                      
-                    </div>  
-        </mat-tab>
-        <mat-tab label="Customers">
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let customer of adminService.getCustomers()">
-                <div class="centerPage">
-                        <mat-card class="example-card">
-                                <mat-card-header>
-                                  <div mat-card-avatar class="example-header-image"></div>
-                                  <mat-card-title>{{customer.id}}</mat-card-title>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <p> Customer name : {{customer.customerName}}</p>
-                                    <p> Customer password : {{customer.password}}</p>
-                                    <button mat-button [matMenuTriggerFor]="menu">Actions</button>
-                                    <mat-menu #menu="matMenu">
-                                      <button (click)="updateCustomer(customer)" mat-menu-item>Update Customer</button>
-                                      <button (click)="deleteCustomer(customer.id)" mat-menu-item>Delete Customer</button>
-                                    </mat-menu>
-                                </mat-card-content>
-                              </mat-card>
-                              <mat-divider></mat-divider>
-                     </div>
-                    </mat-grid-tile>
-                  </mat-grid-list>
-                  <div class="centerPage">
-                    <button mat-button  class="button" (click)="createCustomer()">Create Customer</button>
-                    <mat-divider></mat-divider>
-                    <mat-form-field>
-                        <textarea matInput placeholder="Customer id" [(ngModel)]="customerId"></textarea>
-                      </mat-form-field>
-                      <button mat-button  class="button" (click)="getCustomerById(customerId)">Get Company</button>
-                      <div *ngIf="customerSearch">
-                          <mat-card class="example-card" >
-                              <mat-card-header>
-                                <div mat-card-avatar class="example-header-image"></div>
-                                <mat-card-title>{{customer.id}}</mat-card-title>
-                                <mat-card-subtitle>{{customer.customerName}}</mat-card-subtitle>
-                              </mat-card-header>
-                              <mat-card-content>
-                                  <p> Customer name : {{customer.customerName}}</p>
-                                  <p> Customer password : {{customer.password}}</p>
-                                  <button mat-button [matMenuTriggerFor]="menu">Actions</button>
-                                  <mat-menu #menu="matMenu">
-                                    <button (click)="updateCustomer(customer)" mat-menu-item>Update Customer</button>
-                                    <button (click)="deleteCustomer(customer.id)" mat-menu-item>Delete Customer</button>
-                                  </mat-menu>
-                              </mat-card-content>
-                            </mat-card>
-                          </div>
-                      
-                        </div>  
-        </mat-tab>
-        
+  <mat-tab-group>
+    <mat-tab label="Companies">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let company of adminService.getCompanies()">
+          <div class="centerPage">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{company.id}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p> Company name : {{company.companyName}}</p>
+                <p> Company email : {{company.email}}</p>
+                <p> Company password : {{company.password}}</p>
+                <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="updateCompany(company)" mat-menu-item>Update Company</button>
+                  <button (click)="deleteCompany(company.id)" mat-menu-item>Delete Company</button>
+                </mat-menu>
+              </mat-card-content>
+            </mat-card>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-divider></mat-divider>
+      <div class="centerPage">
+        <button mat-button class="button" (click)="createCompany()">Create Company</button>
+        <mat-divider></mat-divider>
+        <mat-form-field>
+          <textarea matInput placeholder="Company id" [(ngModel)]="companyId"></textarea>
+        </mat-form-field>
+        <button mat-button class="button" (click)="getCompanyById(companyId)">Get Company</button>
+        <div *ngIf="companySearch">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{company.id}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p> Company name : {{company.companyName}}</p>
+              <p> Company email : {{company.email}}</p>
+              <p> Company password : {{company.password}}</p>
+              <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+              <mat-menu #menu="matMenu">
+                <button (click)="updateCompany(company)" mat-menu-item>Update Company</button>
+                <button (click)="deleteCompany(company.id)" mat-menu-item>Delete Company</button>
+              </mat-menu>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
-        <mat-tab label="Income">
-            <mat-grid-list cols="2" rowHeight="2:1">
-                <mat-grid-tile *ngFor="let income of adminService.getIncomes()">
-            <div class="centerPage">
+      </div>
+    </mat-tab>
+    <mat-tab label="Customers">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let customer of adminService.getCustomers()">
+          <div class="centerPage">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{customer.id}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p> Customer name : {{customer.customerName}}</p>
+                <p> Customer password : {{customer.password}}</p>
+                <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="updateCustomer(customer)" mat-menu-item>Update Customer</button>
+                  <button (click)="deleteCustomer(customer.id)" mat-menu-item>Delete Customer</button>
+                </mat-menu>
+              </mat-card-content>
+            </mat-card>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="centerPage">
+        <button mat-button class="button" (click)="createCustomer()">Create Customer</button>
+        <mat-divider></mat-divider>
+        <mat-form-field>
+          <textarea matInput placeholder="Customer id" [(ngModel)]="customerId"></textarea>
+        </mat-form-field>
+        <button mat-button class="button" (click)="getCustomerById(customerId)">Get Customer</button>
+        <div *ngIf="customerSearch">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{customer.id}}</mat-card-title>
+              <mat-card-subtitle>{{customer.customerName}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p> Customer name : {{customer.customerName}}</p>
+              <p> Customer password : {{customer.password}}</p>
+              <button mat-button [matMenuTriggerFor]="menu">Actions</button>
+              <mat-menu #menu="matMenu">
+                <button (click)="updateCustomer(customer)" mat-menu-item>Update Customer</button>
+                <button (click)="deleteCustomer(customer.id)" mat-menu-item>Delete Customer</button>
+              </mat-menu>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Income">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let income of adminService.getIncomes()">
+          <div class="centerPage">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{income.id}}</mat-card-title>
+                <mat-card-subtitle>{{income.name}}</mat-card-subtitle>
+                <mat-card-subtitle>{{company.date}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  {{income.description}}
+                </p>
+                <p>
+                  {{income.amount}}
+                </p>
+              </mat-card-content>
+            </mat-card>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="centerPage">
+        <mat-divider></mat-divider>
+        <mat-form-field>
+          <textarea matInput placeholder="Customer id" [(ngModel)]="customerIncomeId"></textarea>
+        </mat-form-field>
+        <button mat-button class="button" (click)="getCustomerIncome(customerIncomeId)">Get Customer income</button>
+        <div *ngIf="customerIncomeSearch">
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let income of customerIncome">
+              <div class="centerPage">
                 <mat-card class="example-card">
-                        <mat-card-header>
-                          <div mat-card-avatar class="example-header-image"></div>
-                          <mat-card-title>{{income.id}}</mat-card-title>
-                          <mat-card-subtitle>{{income.name}}</mat-card-subtitle>
-                          <mat-card-subtitle>{{company.date}}</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                          <p>
-                            {{income.description}}
-                          </p>
-                          <p>
-                            {{income.amount}}
-                          </p>
-                        </mat-card-content>
-                      </mat-card>
-                      <mat-divider></mat-divider>
-             </div>
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{income.id}}</mat-card-title>
+                    <mat-card-subtitle>{{income.name}}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>
+                      {{income.description}}
+                    </p>
+                    <p>
+                      {{income.amount}}
+                    </p>
+                  </mat-card-content>
+                </mat-card>
+                <mat-divider></mat-divider>
+              </div>
             </mat-grid-tile>
           </mat-grid-list>
-        </mat-tab>
-    </mat-tab-group>
+        </div>
+      <mat-divider></mat-divider>
+      <mat-form-field>
+        <textarea matInput placeholder="Comapny id" [(ngModel)]="companyIncomeId"></textarea>
+      </mat-form-field>
+        <button mat-button class="button" (click)="getCompanyIncome(companyIncomeId)">Get Company income</button>
+        <div *ngIf="companyIncomeSearch">
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let income of companyIncome">
+              <div class="centerPage">
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{income.id}}</mat-card-title>
+                    <mat-card-subtitle>{{income.name}}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>
+                      {{income.description}}
+                    </p>
+                    <p>
+                      {{income.amount}}
+                    </p>
+                  </mat-card-content>
+                </mat-card>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

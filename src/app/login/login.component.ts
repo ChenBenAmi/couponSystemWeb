@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginServiceService, private router: Router) { }
   user: LoginUser = {
-    userName: 'admin', password: '1234', clientType: 'ADMIN'
+    userName: 'a', password: 'a', clientType: 'CUSTOMER'
   };
   result: Response;
 
@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
         this.loginService.token=this.result.body.toString();
         if (user.clientType==='ADMIN') {
           this.router.navigate(['/admin']);
-        } else if (user.clientType==='ADMIN') {
+        } else if (user.clientType==='COMPANY') {
           this.router.navigate(['/company']);
-        } else if (user.clientType==='ADMIN') {
+        } else if (user.clientType==='CUSTOMER') {
           this.router.navigate(['/customer']);
         }
       }
